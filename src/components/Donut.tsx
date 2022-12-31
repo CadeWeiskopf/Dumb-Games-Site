@@ -25,7 +25,7 @@ const Scene: React.FC = () => {
       <perspectiveCamera position={[0, 0, 5]} />
       <mesh rotation={new THREE.Euler(rotation, rotation, rotation)}>
         <torusGeometry attach="geometry" />
-        <meshBasicMaterial attach="material" color={0xff0000} />
+        <meshBasicMaterial attach="material" color={0xff0080} />
       </mesh>
     </>
   );
