@@ -17,19 +17,20 @@ const NavBar: React.FC<NavBarProps> = ({ className }) => {
           justifyContent="flex-start"
           spacing={8}
           alignItems="center"
+          style={{ maxWidth: "100%" }}
         >
           <Grid item>
             <Typography variant="h6" align="center">
               DumbGames
             </Typography>
           </Grid>
-          <Grid item style={{ display: "flex" }}>
+          <Grid item style={{ display: "flex", width: "25px" }}>
             <GamesIcon />
           </Grid>
-          <Grid item style={{ display: "flex" }}>
+          <Grid item style={{ display: "flex", width: "25px" }}>
             <InfoIcon />
           </Grid>
-          <Grid item style={{ display: "flex" }}>
+          <Grid item style={{ display: "flex", width: "25px" }}>
             <ContactMailIcon />
           </Grid>
         </Grid>
