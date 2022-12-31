@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import { Typography } from "@mui/material";
@@ -15,12 +15,16 @@ const Donut: React.FC = () => {
 };
 
 const Scene: React.FC = () => {
+  const [rotation, setRotation] = useState<number>(0);
+  useEffect(() => {
+    setRotation((prevRotation) => prevRotation + 0.1);
+  }, [rotation]);
   return (
     <>
       <ambientLight intensity={0.5} />
       <pointLight position={[10, 10, 10]} />
       <perspectiveCamera position={[0, 0, 5]} />
-      <mesh>
+      <mesh rotation={new THREE.Euler(rotation, rotation, rotation)}>
         <torusGeometry attach="geometry" />
         <meshBasicMaterial attach="material" color={0xff0000} />
       </mesh>
