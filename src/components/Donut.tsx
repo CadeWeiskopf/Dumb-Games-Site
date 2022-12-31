@@ -15,34 +15,13 @@ const Donut: React.FC = () => {
 };
 
 const Scene: React.FC = () => {
-  const mesh = useRef<THREE.Mesh>();
-  const { scene } = useThree();
-  useFrame(() => {
-    if (mesh.current === undefined) {
-      return;
-    }
-
-    console.log(mesh.current);
-    mesh.current.rotation.x += 0.01;
-    mesh.current.rotation.y += 0.01;
-  });
-
-  useEffect(() => {
-    const geometry = new THREE.TorusGeometry(1, 0.5, 16, 100);
-    const material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
-    mesh.current = new THREE.Mesh(geometry, material);
-
-    const light = new THREE.PointLight(0xffffff, 1, 1000);
-    light.position.set(50, 50, 50);
-    scene.add(light);
-  }, []);
-
   return (
     <>
+      <ambientLight intensity={0.5} />
       <pointLight position={[10, 10, 10]} />
       <perspectiveCamera position={[0, 0, 5]} />
-      <mesh ref={mesh}>
-        <torusGeometry attach="geometry" args={[1, 0.5, 16, 100]} />
+      <mesh>
+        <torusGeometry attach="geometry" />
         <meshBasicMaterial attach="material" color={0xff0000} />
       </mesh>
     </>
