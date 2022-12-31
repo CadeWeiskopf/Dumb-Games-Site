@@ -44,7 +44,7 @@ const Scene: React.FC = () => {
         }
       >
         <torusGeometry attach="geometry" />
-        <meshBasicMaterial attach="material" color={0xff0000} />
+        <meshBasicMaterial attach="material" color={0xff0080} />
       </mesh>
     </>
   );
