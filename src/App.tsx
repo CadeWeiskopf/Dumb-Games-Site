@@ -39,6 +39,17 @@ const useStyles = makeStyles({
   },
   navbar: {
     background: "linear-gradient(45deg, #ff0080 30%, #ff8c00 90%)",
+    padding: "0 12em 0 12em",
+  },
+  "@media (max-width: 1000px)": {
+    navbar: {
+      padding: "0 4em 0 4em",
+    },
+  },
+  "@media (max-width: 480px)": {
+    navbar: {
+      padding: 0,
+    },
   },
 });
 
