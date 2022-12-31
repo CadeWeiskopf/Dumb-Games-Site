@@ -46,6 +46,19 @@ const Scene: React.FC = () => {
         <torusGeometry attach="geometry" />
         <meshBasicMaterial attach="material" color={0xff0080} />
       </mesh>
+      <mesh
+        rotation={
+          new THREE.Euler(
+            rotation * DONUT_SPEED,
+            rotation * DONUT_SPEED,
+            rotation * DONUT_SPEED
+          )
+        }
+        position={[0, 0, 1]}
+      >
+        <torusGeometry attach="geometry" tube={0.01} radius={0.1} />
+        <meshBasicMaterial attach="material" color={0xffffff} />
+      </mesh>
     </>
   );
 };
