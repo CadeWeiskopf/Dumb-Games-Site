@@ -1,0 +1,12 @@
+.underlined {
+  border-bottom: 3px solid transparent;
+  background-image: linear-gradient(to right, pink, pink);
+  background-position: 0 100%;
+  background-repeat: repeat-x;
+  background-size: 3px 1px;
+  transition: background-size 0.3s;
+}
+
+.underlined:hover {
+  background-size: 3px 100%;
+}
