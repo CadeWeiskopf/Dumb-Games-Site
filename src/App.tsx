@@ -1,12 +1,6 @@
-import { createTheme, ThemeProvider } from "@material-ui/core/styles";
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Grid,
-  makeStyles,
-  CssBaseline,
-} from "@material-ui/core";
+import { makeStyles } from "@mui/styles";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { AppBar, Toolbar, Typography, Grid, CssBaseline } from "@mui/material";
 import Footer from "./components/Footer";
 import Main from "./components/Main";
 import NavBar from "./components/NavBar";
@@ -14,7 +8,6 @@ import "./App.css";
 
 const theme = createTheme({
   palette: {
-    type: "dark",
     primary: {
       main: "#ff0080", // retro-style pink color
     },
@@ -22,19 +15,20 @@ const theme = createTheme({
       main: "#00bfff", // 80s-style bright blue color
     },
     background: {
-      default: "#333333", // dark grey background
+      default: "#121212", // dark grey background
     },
   },
   typography: {
-    h1: {
-      fontSize: "3rem",
-      fontWeight: "bold",
-      color: "#ffffff", // white text
+    h6: {
+      color: "#fff",
+    },
+    subtitle1: {
+      color: "#fff",
     },
   },
 });
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
   root: {
     display: "flex",
     flexDirection: "column",
@@ -46,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
   navbar: {
     background: "linear-gradient(45deg, #ff0080 30%, #ff8c00 90%)",
   },
-}));
+});
 
 function App() {
   const classes = useStyles(theme);

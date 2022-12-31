@@ -1,8 +1,8 @@
-import { AppBar, Toolbar, Typography, Grid } from "@material-ui/core";
+import { AppBar, Toolbar, Typography, Grid } from "@mui/material";
 
-import GamesIcon from "@material-ui/icons/Games";
-import InfoIcon from "@material-ui/icons/Info";
-import ContactMailIcon from "@material-ui/icons/ContactMail";
+import GamesIcon from "@mui/icons-material/Games";
+import InfoIcon from "@mui/icons-material/Info";
+import ContactMailIcon from "@mui/icons-material/ContactMail";
 
 interface NavBarProps {
   className: string;
