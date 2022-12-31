@@ -6,7 +6,6 @@ import { Typography } from "@mui/material";
 const Donut: React.FC = () => {
   return (
     <div>
-      <Typography variant="h6">donut</Typography>
       <Canvas style={{ height: "500px" }}>
         <Scene />
       </Canvas>
