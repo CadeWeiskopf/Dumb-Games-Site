@@ -14,25 +14,27 @@ const NavBar: React.FC<NavBarProps> = ({ className }) => {
       <Toolbar>
         <Grid
           container
-          justifyContent="flex-start"
-          spacing={8}
+          justifyContent="space-between"
+          spacing={0}
           alignItems="center"
-          style={{ maxWidth: "100%" }}
+          style={{ maxWidth: "100%", padding: "12px 12px 12px 12px" }}
         >
           <Grid item>
             <Typography variant="h6" align="center">
               DumbGames
             </Typography>
           </Grid>
-          <Grid item style={{ display: "flex", width: "25px" }}>
-            <GamesIcon />
-          </Grid>
-          <Grid item style={{ display: "flex", width: "25px" }}>
-            <InfoIcon />
-          </Grid>
-          <Grid item style={{ display: "flex", width: "25px" }}>
-            <ContactMailIcon />
-          </Grid>
+          <div style={{ display: "flex", gap: "12px" }}>
+            <Grid item style={{ display: "flex" }}>
+              <GamesIcon />
+            </Grid>
+            <Grid item style={{ display: "flex" }}>
+              <InfoIcon />
+            </Grid>
+            <Grid item style={{ display: "flex" }}>
+              <ContactMailIcon />
+            </Grid>
+          </div>
         </Grid>
       </Toolbar>
     </AppBar>
