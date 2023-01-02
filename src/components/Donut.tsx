@@ -3,7 +3,7 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import { Typography } from "@mui/material";
 
-const DONUT_SPEED = 0.1;
+const DONUT_SPEED = 0.01;
 
 const Donut: React.FC = () => {
   return (
@@ -17,15 +17,21 @@ const Donut: React.FC = () => {
 
 const Scene: React.FC = () => {
   const [rotation, setRotation] = useState<number>(0);
+  const rafId = useRef<number>(0);
+  const lastFrameTime = useRef<number>(0);
+  const animate = (timeStamp: number) => {
+    if (timeStamp - lastFrameTime.current > 50) {
+      setRotation((prevRotation) => prevRotation + 0.01);
+      lastFrameTime.current = timeStamp;
+    }
+    setRotation((prevRotation) => prevRotation + 0.01);
+    rafId.current = requestAnimationFrame(animate);
+  };
 
   useEffect(() => {
-    const animationFrame = requestAnimationFrame(() => {
-      setRotation((prevRotation) => prevRotation + 0.1);
-      animationFrame = requestAnimationFrame(arguments.callee);
-    });
-
+    animate(performance.now());
     return () => {
-      cancelAnimationFrame(animationFrame);
+      cancelAnimationFrame(rafId.current);
     };
   }, [rotation]);
 
@@ -56,12 +62,7 @@ const Scene: React.FC = () => {
         }
         position={[0, 0, -1]}
       >
-        <torusGeometry
-          attach="geometry"
-          tube={0.01}
-          radius={0.1}
-          radialSegments={1}
-        />
+        <torusGeometry attach="geometry" />
         <meshBasicMaterial attach="material" color={0xffffff} />
       </mesh>
     </>
