@@ -54,9 +54,14 @@ const Scene: React.FC = () => {
             rotation * DONUT_SPEED
           )
         }
-        position={[0, 0, 1]}
+        position={[0, 0, -1]}
       >
-        <torusGeometry attach="geometry" tube={0.01} radius={0.1} />
+        <torusGeometry
+          attach="geometry"
+          tube={0.01}
+          radius={0.1}
+          radialSegments={1}
+        />
         <meshBasicMaterial attach="material" color={0xffffff} />
       </mesh>
     </>
