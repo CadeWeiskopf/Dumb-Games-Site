@@ -57,26 +57,23 @@ const Scene: React.FC = () => {
   );
 
   // Create the icing
-  const icingRef = useRef<Mesh>(null);
-  /*const displacementMap = useLoader(
-    THREE.TextureLoader,
-    "../../public/donut/DisplacementMap.png"
-  );*/
-  const icing = (
-    <mesh ref={icingRef} position={[0, 0, 0.5]}>
-      <torusGeometry attach="geometry" args={[1, 0.15, 2, 32]} />
+  const sprinkleRef = useRef<Mesh>(null);
+
+  const sprinkle = (
+    <mesh ref={sprinkleRef} position={[0, 1, 0.5]} scale={0.025}>
+      <capsuleGeometry attach="geometry" args={[1, 3, 5, 16]} />
       <meshBasicMaterial attach="material" color={0xffffff} />
     </mesh>
   );
 
-  if (donutRef.current && icingRef.current) {
-    donutRef.current.add(icingRef.current);
+  if (donutRef.current && sprinkleRef.current) {
+    donutRef.current.add(sprinkleRef.current);
   }
 
   return (
     <>
       {donut}
-      {icing}
+      {sprinkle}
     </>
   );
 };
