@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { Canvas, useFrame, useLoader, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import { Typography } from "@mui/material";
+import { Mesh } from "three";
 
-const DONUT_SPEED = 0.01;
+const DONUT_SPEED = 0.005;
 
 const Donut: React.FC = () => {
   return (
@@ -36,36 +37,46 @@ const Scene: React.FC = () => {
     };
   }, [rotation]);
 
+  // Create the donut
+  const donutRef = useRef<Mesh>(null);
+  const donut = (
+    <mesh
+      rotation={
+        new THREE.Euler(
+          rotation * DONUT_SPEED,
+          rotation * DONUT_SPEED,
+          rotation * DONUT_SPEED
+        )
+      }
+      position={[0, 0, 0]}
+      ref={donutRef}
+    >
+      <torusGeometry attach="geometry" args={[1, 0.5, 32, 32]} />
+      <meshBasicMaterial attach="material" color={0xff0080} />
+    </mesh>
+  );
+
+  // Create the icing
+  const icingRef = useRef<Mesh>(null);
+  /*const displacementMap = useLoader(
+    THREE.TextureLoader,
+    "../../public/donut/DisplacementMap.png"
+  );*/
+  const icing = (
+    <mesh ref={icingRef} position={[0, 0, 0.5]}>
+      <torusGeometry attach="geometry" args={[1, 0.3, 2, 32]} />
+      <meshBasicMaterial attach="material" color={0xffffff} />
+    </mesh>
+  );
+
+  if (donutRef.current && icingRef.current) {
+    donutRef.current.add(icingRef.current);
+  }
+
   return (
     <>
-      <ambientLight intensity={0.5} />
-      <pointLight position={[10, 10, 10]} />
-      <perspectiveCamera position={[0, 0, 5]} />
-      <mesh
-        rotation={
-          new THREE.Euler(
-            rotation * DONUT_SPEED,
-            rotation * DONUT_SPEED,
-            rotation * DONUT_SPEED
-          )
-        }
-      >
-        <torusGeometry attach="geometry" />
-        <meshBasicMaterial attach="material" color={0xff0080} />
-      </mesh>
-      <mesh
-        rotation={
-          new THREE.Euler(
-            rotation * DONUT_SPEED,
-            rotation * DONUT_SPEED,
-            rotation * DONUT_SPEED
-          )
-        }
-        position={[0, 0, -1]}
-      >
-        <torusGeometry attach="geometry" />
-        <meshBasicMaterial attach="material" color={0xffffff} />
-      </mesh>
+      {donut}
+      {icing}
     </>
   );
 };
