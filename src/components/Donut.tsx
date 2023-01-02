@@ -21,6 +21,7 @@ const Scene: React.FC = () => {
   const lastFrameTime = useRef<number>(0);
   const animate = (timeStamp: number) => {
     if (timeStamp - lastFrameTime.current > 50) {
+      // update every 50ms
       setRotation((prevRotation) => prevRotation + 0.01);
       lastFrameTime.current = timeStamp;
     }
