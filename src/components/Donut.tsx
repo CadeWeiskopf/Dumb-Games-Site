@@ -64,7 +64,7 @@ const Scene: React.FC = () => {
   );*/
   const icing = (
     <mesh ref={icingRef} position={[0, 0, 0.5]}>
-      <torusGeometry attach="geometry" args={[1, 0.3, 2, 32]} />
+      <torusGeometry attach="geometry" args={[1, 0.15, 2, 32]} />
       <meshBasicMaterial attach="material" color={0xffffff} />
     </mesh>
   );
