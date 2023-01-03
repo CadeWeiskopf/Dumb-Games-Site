@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { Canvas, useFrame, useLoader, useThree } from "@react-three/fiber";
+import { Canvas } from "@react-three/fiber";
 import * as THREE from "three";
-import { Typography } from "@mui/material";
 import { Mesh } from "three";
 
 const DONUT_SPEED = 0.005;
