@@ -23,15 +23,16 @@ const generateSprinkles = () => {
   }[] = [];
 
   // Generate a higher number of sprinkles to ensure that a majority of the donut is covered
-  const numSprinkles = 200;
+  const numSprinkles = 420;
 
   const colors = [0x06b583, 0xefdd00, 0xf99f0d, 0x9c2fbc, 0xe30427, 0x0994e3];
 
   for (let i = 0; i < numSprinkles; i++) {
     // Generate random angle and radius values
     const angle = Math.random() * 2 * Math.PI;
-    // radius of donut is between 0.6 and 1
-    const radius = 0.6 + Math.random() * 0.6;
+    const min = 0.6;
+    const max = 1.4;
+    const radius = min + Math.random() * (max - min);
 
     // Calculate position based on angle and radius
     const x = radius * Math.cos(angle);
@@ -39,8 +40,8 @@ const generateSprinkles = () => {
     let z = 0.5; // front of donut
 
     // If the sprinkle is close to the inside of the donut, set the z-index further away from the camera
-    if (radius < 0.7) {
-      z = 0.4;
+    if (radius < 0.7 || radius > 1.2) {
+      z = 0.35;
     }
 
     const position = new THREE.Vector3(x, y, z);
