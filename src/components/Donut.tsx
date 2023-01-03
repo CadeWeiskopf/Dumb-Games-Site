@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import * as THREE from "three";
-import { Mesh } from "three";
+import { Mesh, Vector3 } from "three";
 
 const DONUT_SPEED = 0.1;
 
@@ -67,7 +67,7 @@ const generateSprinkles = () => {
 const Scene: React.FC = () => {
   const [rotation, setRotation] = useState<number>(0);
   const [sprinkles, setSprinkles] = useState<
-    { position: THREE.Vector3; rotation: THREE.Euler }[]
+    { position: THREE.Vector3; rotation: THREE.Euler; color: number }[]
   >([]);
 
   // Generate the sprinkles when the component mounts
@@ -108,13 +108,42 @@ const Scene: React.FC = () => {
       ref={donutRef}
     >
       <torusGeometry attach="geometry" args={[1, 0.5, 32, 32]} />
-      <meshBasicMaterial attach="material" color={0xff0080} />
+      <meshBasicMaterial
+        attach="material"
+        color={0xff0080}
+        depthTest={true}
+        depthWrite={true}
+      />
     </mesh>
   );
+  // Create the donut
+  const icingRef = useRef<Mesh>(null);
+  const icing = (
+    <mesh
+      rotation={
+        new THREE.Euler(
+          rotation * DONUT_SPEED,
+          rotation * DONUT_SPEED,
+          rotation * DONUT_SPEED
+        )
+      }
+      scale={new Vector3(0.36, 0.36, 0.4)}
+      position={[0, 0, 3]}
+      ref={donutRef}
+    >
+      <torusGeometry attach="geometry" args={[1, 0.5, 32, 8]} />
+      <meshBasicMaterial attach="material" color={0xffffff} />
+    </mesh>
+  );
+
+  if (donutRef.current && icingRef.current) {
+    donutRef.current.add(icingRef.current);
+  }
 
   return (
     <>
       {donut}
+      {icing}
       {sprinkles.map((sprinkle, index) => (
         <Sprinkle
           key={index}
@@ -152,4 +181,5 @@ const Sprinkle: React.FC<{
     </mesh>
   );
 };
+
 export default Donut;
