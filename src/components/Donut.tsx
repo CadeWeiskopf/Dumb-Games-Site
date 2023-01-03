@@ -40,8 +40,10 @@ const generateSprinkles = () => {
     let z = 0.5; // front of donut
 
     // If the sprinkle is close to the inside of the donut, set the z-index further away from the camera
-    if (radius < 0.7 || radius > 1.2) {
+    if (radius < 0.7 || radius > 1.3) {
       z = 0.35;
+    } else if (radius > 1.2) {
+      z = 0.45;
     }
 
     const position = new THREE.Vector3(x, y, z);
