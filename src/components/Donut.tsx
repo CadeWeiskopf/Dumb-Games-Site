@@ -120,16 +120,9 @@ const Scene: React.FC = () => {
   const icingRef = useRef<Mesh>(null);
   const icing = (
     <mesh
-      rotation={
-        new THREE.Euler(
-          rotation * DONUT_SPEED,
-          rotation * DONUT_SPEED,
-          rotation * DONUT_SPEED
-        )
-      }
-      scale={new Vector3(0.36, 0.36, 0.4)}
-      position={[0, 0, 3]}
-      ref={donutRef}
+      scale={new Vector3(0.98, 0.98, 0.4)}
+      position={[0, 0, 0.32]}
+      ref={icingRef}
     >
       <torusGeometry attach="geometry" args={[1, 0.5, 32, 8]} />
       <meshBasicMaterial attach="material" color={0xffffff} />
@@ -139,7 +132,6 @@ const Scene: React.FC = () => {
   if (donutRef.current && icingRef.current) {
     donutRef.current.add(icingRef.current);
   }
-
   return (
     <>
       {donut}
