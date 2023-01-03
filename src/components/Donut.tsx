@@ -92,7 +92,7 @@ const Scene: React.FC = () => {
   const sprinkle4 = (
     <mesh
       ref={sprinkle4Ref}
-      position={[0.1, 1.15, 0.5]}
+      position={[0.1, 1.15, 0.4]}
       scale={0.025}
       rotation={[0, 0, 0.8]}
     >
@@ -136,9 +136,9 @@ const Scene: React.FC = () => {
   const sprinkle8 = (
     <mesh
       ref={sprinkle8Ref}
-      position={[0.4, 0.7, 0.5]}
+      position={[0.3, 0.7, 0.48]}
       scale={0.025}
-      rotation={[0, 0, -0.9]}
+      rotation={[-0.15, 0, -0.3]}
     >
       <capsuleGeometry attach="geometry" args={[1, 3, 5, 16]} />
       <meshBasicMaterial attach="material" color={0xf99f0d} />
