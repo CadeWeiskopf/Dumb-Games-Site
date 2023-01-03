@@ -3,7 +3,7 @@ import { Canvas } from "@react-three/fiber";
 import * as THREE from "three";
 import { Mesh } from "three";
 
-const DONUT_SPEED = 0.005;
+const DONUT_SPEED = 0.1;
 
 const Donut: React.FC = () => {
   return (
@@ -30,12 +30,18 @@ const generateSprinkles = () => {
   for (let i = 0; i < numSprinkles; i++) {
     // Generate random angle and radius values
     const angle = Math.random() * 2 * Math.PI;
-    const radius = 0.6 + Math.random() * 0.6; // radius of donut is between 0.6 and 1
+    // radius of donut is between 0.6 and 1
+    const radius = 0.6 + Math.random() * 0.6;
 
     // Calculate position based on angle and radius
     const x = radius * Math.cos(angle);
     const y = radius * Math.sin(angle);
-    const z = 0.5; // front of donut
+    let z = 0.5; // front of donut
+
+    // If the sprinkle is close to the inside of the donut, set the z-index further away from the camera
+    if (radius < 0.7) {
+      z = 0.4;
+    }
 
     const position = new THREE.Vector3(x, y, z);
 
